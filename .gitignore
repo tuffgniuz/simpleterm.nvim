@@ -1,0 +1,69 @@
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Neovim / plugin testing
+# -------------------------
+.nvim/
+nvim/
+tmp/
+tmp/*
+tests/tmp/
+test/tmp/
+
+# Local runtime testing folders
+site/
+pack/
+
+# -------------------------
+# Plugin managers (local dev)
+# -------------------------
+lazy-lock.json
+
+# -------------------------
+# Lua package managers
+# -------------------------
+lua_modules/
+.rocks/
+luarocks/
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+
+# -------------------------
+# Editor / IDE
+# -------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# -------------------------
+# Build artifacts
+# -------------------------
+dist/
+build/
+
+# -------------------------
+# Coverage / testing
+# -------------------------
+coverage/
+luacov.report.out
+luacov.stats.out
+
+# -------------------------
+# Node (if using tooling)
+# -------------------------
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# other
+specs.md

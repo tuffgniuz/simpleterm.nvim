@@ -1,0 +1,134 @@
+*simpleterm.txt*   simpleterm.nvim
+
+simpleterm.nvim is a small terminal toggle plugin built on top of Neovim's
+built-in terminal support. It keeps a single reusable terminal buffer and can
+show it in a split or centered floating window.
+
+==============================================================================
+CONTENTS                                              *simpleterm-contents*
+
+1. Requirements ........................................ |simpleterm-requirements|
+2. Commands ............................................ |simpleterm-commands|
+3. Setup ............................................... |simpleterm-setup|
+4. Configuration ....................................... |simpleterm-configuration|
+5. API ................................................. |simpleterm-api|
+
+==============================================================================
+1. Requirements                                      *simpleterm-requirements*
+
+- Neovim 0.9 or newer.
+
+==============================================================================
+2. Commands                                              *simpleterm-commands*
+
+:SimpletermToggle
+        Toggle the terminal open or closed.
+
+The plugin also installs a keymap in Normal mode and Terminal mode. The default
+mapping is:
+
+        <leader>t
+
+The mapping uses |:map-<nowait>| so Neovim does not wait for a longer matching
+key sequence before toggling.
+
+==============================================================================
+3. Setup                                                    *simpleterm-setup*
+
+Call |require()| from your config:
+
+>
+    require("simpleterm").setup({
+      mode = "float",
+      size = 15,
+      keymap = "<leader>t",
+      float = {
+        width = 0.8,
+        height = 0.8,
+        border = "rounded",
+      },
+    })
+<
+
+If you do not call |simpleterm.setup()|, the plugin initializes itself with
+default settings.
+
+==============================================================================
+4. Configuration                                  *simpleterm-configuration*
+
+                                                        *simpleterm-config-mode*
+mode                                                    Type: string
+        Where to open the terminal. Supported values:
+
+        - "left"
+        - "right"
+        - "float"
+        - "bottom"
+
+                                                        *simpleterm-config-size*
+size                                                    Type: number
+        Split size. Used as width for "left" and "right", and as height for
+        "bottom". For vertical terminals, simpleterm enforces a minimum width
+        of one third of the editor to avoid overly narrow splits. Ignored for
+        the floating window layout.
+
+                                                      *simpleterm-config-float*
+float                                                   Type: table
+        Floating window settings used when |simpleterm-config-mode| is "float".
+
+        width                                           Type: number
+                Float width. Values between 0 and 1 are treated as a ratio of
+                the editor width. Integer values are used as a fixed column
+                width.
+
+        height                                          Type: number
+                Float height. Values between 0 and 1 are treated as a ratio of
+                the editor height. Integer values are used as a fixed row
+                height.
+
+        border                                          Type: string
+                Floating window border style passed to |nvim_open_win()|.
+                While visible, the floating terminal automatically recenters
+                and resizes when the editor is resized, and it reuses the
+                terminal background highlight for the float and border.
+
+                                                     *simpleterm-config-keymap*
+keymap                                                  Type: string
+        Toggle mapping installed in Normal mode and Terminal mode. The mapping
+        uses |:map-<nowait>| to avoid waiting for longer matching key sequences.
+
+                                                 *simpleterm-config-scrollback*
+scrollback                                              Type: number
+        Number of terminal scrollback lines to keep for the managed terminal
+        buffer. Lower values can make reopening faster when the terminal has
+        produced a lot of output.
+
+Defaults: >
+    {
+      mode = "bottom",
+      size = 15,
+      keymap = "<leader>t",
+      scrollback = 1000,
+      float = {
+        width = 0.8,
+        height = 0.8,
+        border = "rounded",
+      },
+    }
+<
+
+==============================================================================
+5. API                                                        *simpleterm-api*
+
+                                                        *simpleterm.setup()*
+setup({opts})
+        Apply configuration and install the plugin keymaps.
+
+                                                       *simpleterm.toggle()*
+toggle()
+        Toggle the terminal window. The plugin reuses the same terminal buffer
+        when possible and always enters Terminal-Job mode when the terminal is
+        shown.
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:
