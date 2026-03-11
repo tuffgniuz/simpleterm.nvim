@@ -11,6 +11,8 @@ A small Neovim plugin for toggling one reusable built-in terminal in splits or a
 
 ## Installation
 
+<img src="assets/demo.gif" width="800">
+
 ### lazy.nvim
 
 With defaults only:
