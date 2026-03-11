@@ -9,9 +9,13 @@
 A small Neovim plugin for toggling one reusable built-in terminal in splits or a centered float.
 </div>
 
+## Demo
+
+- Floating
+![simpleterm floating in action](assets/demo.gif)
+
 ## Installation
 
-![simpleterm floating in action](assets/demo.gif)
 
 ### lazy.nvim
 
